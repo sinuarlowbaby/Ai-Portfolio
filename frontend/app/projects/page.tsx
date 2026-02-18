@@ -82,45 +82,8 @@ const projects = [
         github: "https://github.com/sinuarlowbaby",
         demo: "#",
     },
-    {
-        id: 3,
-        slug: "portfolio-backend",
-        title: "AI Portfolio Backend",
-        subtitle: "FastAPI-Powered Portfolio API",
-        bannerGradient: "from-[#0a1a0a] via-[#0d2b1a] to-[#1a4a2e]",
-        bannerAccent: "#00e5a0",
-        tags: ["FastAPI", "Python", "PostgreSQL", "REST API", "Pydantic"],
-        overview:
-            "The backend powering this portfolio — a clean FastAPI application with structured endpoints for projects, skills, contact form handling, and an AI chat endpoint. Built with async patterns, Pydantic validation, and a PostgreSQL database.",
-        sections: [
-            {
-                type: "feature",
-                subtitle: "API architecture",
-                title: "FastAPI backend design",
-                description:
-                    "Organized into routers by domain (projects, skills, contact, AI). Each router uses Pydantic models for request/response validation. Async endpoints ensure non-blocking I/O for database queries and external API calls.",
-                visual: "api",
-            },
-            {
-                type: "feature",
-                subtitle: "GenAI integration",
-                title: "AI chat endpoint",
-                description:
-                    "A dedicated /ai/chat endpoint accepts natural language questions about the portfolio owner and returns contextual answers using an LLM. The endpoint is rate-limited and validated to prevent abuse.",
-                visual: "chat",
-            },
-            {
-                type: "takeaway",
-                subtitle: "What this demonstrates",
-                title: "Takeaway",
-                description:
-                    "Demonstrates production FastAPI patterns — clean routing, Pydantic validation, async design, and integrating LLM capabilities into a standard REST API. A real example of AI as a system component.",
-            },
-        ],
-        github: "https://github.com/sinuarlowbaby",
-        demo: "#",
-    },
 ];
+
 
 function VisualBlock({ type, accent }: { type: string; accent: string }) {
     const blocks: Record<string, React.ReactNode> = {
