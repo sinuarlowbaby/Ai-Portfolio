@@ -13,7 +13,6 @@ export default function Navbar() {
                 <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
                     <Link href="/" className="hover:text-white transition-colors">Home</Link>
                     <Link href="/projects" className="hover:text-white transition-colors">Projects</Link>
-                    <Link href="/skills" className="hover:text-white transition-colors">Skills</Link>
                     <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
                 </div>
 
