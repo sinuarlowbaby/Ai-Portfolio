@@ -1,16 +1,10 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from .. import models, schemas
-from ..database import SessionLocal
+from ..dependencies import get_db
 
 router = APIRouter(prefix="/projects", tags=["Projects"])
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.get("/", response_model=list[schemas.ProjectResponse])
