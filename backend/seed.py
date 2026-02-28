@@ -1,76 +1,117 @@
 """
-Run this once to seed the skills table:
+Run this once to seed the database with sample projects and skills:
   cd backend
   python seed.py
 """
 
-import sys
-import os
-
-# Make sure the app package is importable
+import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 
 from app.database import SessionLocal, engine, Base
-from app.models import Skill
+from app.models import Skill, Project
 
-# Create tables if they don't exist yet
 Base.metadata.create_all(bind=engine)
 
 SKILLS = [
-    # AI / GenAI Layer
-    {"layer": "AI / GenAI", "name": "LangChain",          "color": "#a855f7"},
-    {"layer": "AI / GenAI", "name": "LlamaIndex",         "color": "#a855f7"},
-    {"layer": "AI / GenAI", "name": "OpenAI API",         "color": "#a855f7"},
-    {"layer": "AI / GenAI", "name": "Gemini API",         "color": "#a855f7"},
-    {"layer": "AI / GenAI", "name": "HuggingFace",        "color": "#a855f7"},
-    {"layer": "AI / GenAI", "name": "RAG Pipelines",      "color": "#a855f7"},
-    {"layer": "AI / GenAI", "name": "Prompt Engineering", "color": "#a855f7"},
-    {"layer": "AI / GenAI", "name": "Vector Databases",   "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "LangChain",          "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "LlamaIndex",         "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "OpenAI API",         "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "Gemini API",         "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "HuggingFace",        "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "RAG Pipelines",      "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "Prompt Engineering", "color": "#a855f7"},
+    {"layer": "AI / GenAI",    "name": "Vector Databases",   "color": "#a855f7"},
 
-    # Backend
-    {"layer": "Backend",    "name": "FastAPI",            "color": "#06b6d4"},
-    {"layer": "Backend",    "name": "Python",             "color": "#06b6d4"},
-    {"layer": "Backend",    "name": "SQLAlchemy",         "color": "#06b6d4"},
-    {"layer": "Backend",    "name": "Pydantic",           "color": "#06b6d4"},
-    {"layer": "Backend",    "name": "REST API",           "color": "#06b6d4"},
-    {"layer": "Backend",    "name": "Django",             "color": "#06b6d4"},
-    {"layer": "Backend",    "name": "WebSockets",         "color": "#06b6d4"},
+    {"layer": "Backend",       "name": "FastAPI",            "color": "#06b6d4"},
+    {"layer": "Backend",       "name": "Python",             "color": "#06b6d4"},
+    {"layer": "Backend",       "name": "SQLAlchemy",         "color": "#06b6d4"},
+    {"layer": "Backend",       "name": "Django",             "color": "#06b6d4"},
+    {"layer": "Backend",       "name": "REST API",           "color": "#06b6d4"},
 
-    # Frontend
-    {"layer": "Frontend",   "name": "Next.js",            "color": "#f59e0b"},
-    {"layer": "Frontend",   "name": "React",              "color": "#f59e0b"},
-    {"layer": "Frontend",   "name": "TypeScript",         "color": "#f59e0b"},
-    {"layer": "Frontend",   "name": "Tailwind CSS",       "color": "#f59e0b"},
-    {"layer": "Frontend",   "name": "Framer Motion",      "color": "#f59e0b"},
+    {"layer": "Frontend",      "name": "Next.js",            "color": "#f59e0b"},
+    {"layer": "Frontend",      "name": "React",              "color": "#f59e0b"},
+    {"layer": "Frontend",      "name": "TypeScript",         "color": "#f59e0b"},
+    {"layer": "Frontend",      "name": "Tailwind CSS",       "color": "#f59e0b"},
+    {"layer": "Frontend",      "name": "Framer Motion",      "color": "#f59e0b"},
 
-    # Database
-    {"layer": "Database",   "name": "PostgreSQL",         "color": "#10b981"},
-    {"layer": "Database",   "name": "SQLite",             "color": "#10b981"},
-    {"layer": "Database",   "name": "MySQL",              "color": "#10b981"},
-    {"layer": "Database",   "name": "ChromaDB",           "color": "#10b981"},
-    {"layer": "Database",   "name": "FAISS",              "color": "#10b981"},
+    {"layer": "Database",      "name": "PostgreSQL",         "color": "#10b981"},
+    {"layer": "Database",      "name": "SQLite",             "color": "#10b981"},
+    {"layer": "Database",      "name": "MySQL",              "color": "#10b981"},
+    {"layer": "Database",      "name": "ChromaDB",           "color": "#10b981"},
+    {"layer": "Database",      "name": "FAISS",              "color": "#10b981"},
 
-    # DevOps / Tools
-    {"layer": "DevOps / Tools", "name": "Git",            "color": "#ef4444"},
-    {"layer": "DevOps / Tools", "name": "Docker",         "color": "#ef4444"},
-    {"layer": "DevOps / Tools", "name": "Linux",          "color": "#ef4444"},
-    {"layer": "DevOps / Tools", "name": "GitHub Actions", "color": "#ef4444"},
+    {"layer": "DevOps / Tools","name": "Git",                "color": "#ef4444"},
+    {"layer": "DevOps / Tools","name": "Docker",             "color": "#ef4444"},
+    {"layer": "DevOps / Tools","name": "Linux",              "color": "#ef4444"},
+    {"layer": "DevOps / Tools","name": "GitHub Actions",     "color": "#ef4444"},
+]
+
+PROJECTS = [
+    {
+        "slug": "rag-chatbot",
+        "title": "Custom RAG Chatbot",
+        "subtitle": "AI Retrieval System",
+        "description": "Context-aware chatbot that queries custom datasets using retrieval pipelines and vector search.",
+        "overview": "Built with LangChain, FAISS, and FastAPI. Supports document ingestion, chunking, embedding, and real-time retrieval-augmented generation.",
+        "tags": "LangChain,LLMs,Vector DB,FastAPI,Python",
+        "github_url": "https://github.com/sinuarlowbaby",
+        "demo_url": "#",
+        "banner_accent": "#a855f7",
+        "banner_gradient": "from-primary/20 to-secondary/10",
+    },
+    {
+        "slug": "oneide",
+        "title": "OneIDE",
+        "subtitle": "Full Stack Online Compiler",
+        "description": "A secure online compiler platform with authentication, session management, and guest mode execution.",
+        "overview": "Supports multiple programming languages with real-time output. Built with Django, Python, and MySQL.",
+        "tags": "Django,Python,MySQL,REST API",
+        "github_url": "https://github.com/sinuarlowbaby",
+        "demo_url": "#",
+        "banner_accent": "#3b82f6",
+        "banner_gradient": "from-secondary/20 to-primary/10",
+    },
+    {
+        "slug": "ai-portfolio",
+        "title": "AI Portfolio",
+        "subtitle": "This Portfolio — GenAI + FastAPI",
+        "description": "A full-stack portfolio with a FastAPI backend, SQLite database, and Next.js frontend with Tailwind v4.",
+        "overview": "Features live projects/skills from DB, contact form, and an AI chat endpoint. Deployed with uvicorn.",
+        "tags": "FastAPI,Next.js,SQLAlchemy,Tailwind CSS,TypeScript",
+        "github_url": "https://github.com/sinuarlowbaby",
+        "demo_url": "#",
+        "banner_accent": "#00e5ff",
+        "banner_gradient": "from-accent/20 to-primary/10",
+    },
 ]
 
 
 def seed():
     db = SessionLocal()
     try:
-        existing = db.query(Skill).count()
-        if existing > 0:
-            print(f"WARNING: Skills table already has {existing} rows. Clearing and re-seeding...")
+        # ── Skills ──────────────────────────────────────────────────────────
+        existing_skills = db.query(Skill).count()
+        if existing_skills > 0:
+            print(f"Clearing {existing_skills} existing skills...")
             db.query(Skill).delete()
             db.commit()
-
         for s in SKILLS:
             db.add(Skill(**s))
         db.commit()
-        print(f"OK: Seeded {len(SKILLS)} skills successfully.")
+        print(f"✓ Seeded {len(SKILLS)} skills")
+
+        # ── Projects ─────────────────────────────────────────────────────────
+        existing_projects = db.query(Project).count()
+        if existing_projects > 0:
+            print(f"Clearing {existing_projects} existing projects...")
+            db.query(Project).delete()
+            db.commit()
+        for p in PROJECTS:
+            db.add(Project(**p))
+        db.commit()
+        print(f"✓ Seeded {len(PROJECTS)} projects")
+
+        print("\nDone! Restart uvicorn if it's already running.")
     finally:
         db.close()
 
