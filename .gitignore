@@ -1,0 +1,42 @@
+# ─── Git Ignore ───────────────────────────────────────────────────────────────
+
+# frontend2 — never commit build artifacts or dependencies
+frontend2/node_modules/
+frontend2/.next/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+env/
+.venv/
+
+# Environment / secrets — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# SQLite database — use Postgres in production
+*.db
+*.sqlite3
+
+# Next.js
+.next/
+out/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
