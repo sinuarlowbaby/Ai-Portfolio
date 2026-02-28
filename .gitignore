@@ -1,42 +1,52 @@
-# ─── Git Ignore ───────────────────────────────────────────────────────────────
+# Environments
+.env
+.env.*
+!.env.example
 
-# frontend2 — never commit build artifacts or dependencies
-frontend2/node_modules/
-frontend2/.next/
-
-# Python
+# Python / FastAPI
 __pycache__/
 *.py[cod]
+*$py.class
 *.pyo
 *.pyd
-*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
 dist/
 build/
 .eggs/
+*.egg-info/
 venv/
 env/
 .venv/
+.mypy_cache/
 
-# Environment / secrets — NEVER commit these
-.env
-.env.local
-.env.*.local
+# Node / Next.js
+node_modules/
+.pnp
+.pnp.js
+.next/
+out/
+build/
+.npm
+Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # SQLite database — use Postgres in production
 *.db
 *.sqlite3
 
-# Next.js
-.next/
-out/
-
-# Node
-node_modules/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
+# IDE / OS
 .vscode/
 .idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
