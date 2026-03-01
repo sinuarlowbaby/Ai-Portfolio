@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
     title: "GenAI Developer | FastAPI | LLM Architectures | Sinu Arlow Baby",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </head>
             <body className="min-h-screen antialiased">
                 {children}
+                <SpeedInsights />
             </body>
         </html>
     );
