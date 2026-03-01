@@ -12,9 +12,9 @@ app.add_middleware(
         "http://localhost:3000",
         "http://localhost:8000",
         "https://ai-portfolio-23ov.onrender.com",  # Render backend
-        "https://sinuarlowbaby.vercel.app",  # Vercel frontend
+        "https://sinuarlowbaby.vercel.app",  # Vercel main domain
     ],
-    allow_origin_regex=r"http://localhost:\d+",
+    allow_origin_regex=r"(http://localhost:\d+|https://.*\.vercel\.app)",  # all Vercel preview URLs
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
