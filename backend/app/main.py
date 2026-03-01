@@ -11,7 +11,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:8000",
-        "https://your-app.vercel.app",  # ← replace with your real Vercel URL after deploying
+        "https://ai-portfolio-23ov.onrender.com",  # Render backend
+        "https://your-app.vercel.app",  # ← replace with your real Vercel URL after deploying frontend
     ],
     allow_origin_regex=r"http://localhost:\d+",
     allow_credentials=True,
