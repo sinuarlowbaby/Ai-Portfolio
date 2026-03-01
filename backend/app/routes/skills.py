@@ -11,9 +11,9 @@ def get_skills(db: Session = Depends(get_db)):
     """Return skills grouped by layer from the database.
     Falls back to hardcoded defaults if the table is empty.
     """
-    rows = db.query(models.Skill).all()
+    skills_query = db.query(models.Skill).all()
 
-    if not rows:
+    if not skills_query:
         # Fallback so frontend always gets data even before seeding
         return {
             "ai":       ["LangChain", "RAG Pipelines", "OpenAI API", "HuggingFace", "Prompt Engineering"],
@@ -23,7 +23,7 @@ def get_skills(db: Session = Depends(get_db)):
         }
 
     grouped: dict[str, list[str]] = defaultdict(list)
-    for row in rows:
-        grouped[row.layer].append(row.name)
+    for skill in skills_query:
+        grouped[skill.layer].append(skill.name)
 
     return dict(grouped)

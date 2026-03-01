@@ -30,9 +30,6 @@ SKILLS = [
 
     {"layer": "Frontend",      "name": "Next.js",            "color": "#f59e0b"},
     {"layer": "Frontend",      "name": "React",              "color": "#f59e0b"},
-    {"layer": "Frontend",      "name": "TypeScript",         "color": "#f59e0b"},
-    {"layer": "Frontend",      "name": "Tailwind CSS",       "color": "#f59e0b"},
-    {"layer": "Frontend",      "name": "Framer Motion",      "color": "#f59e0b"},
 
     {"layer": "Database",      "name": "PostgreSQL",         "color": "#10b981"},
     {"layer": "Database",      "name": "SQLite",             "color": "#10b981"},
@@ -42,7 +39,6 @@ SKILLS = [
 
     {"layer": "DevOps / Tools","name": "Git",                "color": "#ef4444"},
     {"layer": "DevOps / Tools","name": "Docker",             "color": "#ef4444"},
-    {"layer": "DevOps / Tools","name": "Linux",              "color": "#ef4444"},
     {"layer": "DevOps / Tools","name": "GitHub Actions",     "color": "#ef4444"},
 ]
 
@@ -66,54 +62,38 @@ PROJECTS = [
         "description": "A secure online compiler platform with authentication, session management, and guest mode execution.",
         "overview": "Supports multiple programming languages with real-time output. Built with Django, Python, and MySQL.",
         "tags": "Django,Python,MySQL,REST API",
-        "github_url": "https://github.com/sinuarlowbaby",
+        "github_url": "https://github.com/sinuarlowbaby/OneIDE---Online_Compiler-",
         "demo_url": "#",
         "banner_accent": "#3b82f6",
         "banner_gradient": "from-secondary/20 to-primary/10",
-    },
-    {
-        "slug": "ai-portfolio",
-        "title": "AI Portfolio",
-        "subtitle": "This Portfolio — GenAI + FastAPI",
-        "description": "A full-stack portfolio with a FastAPI backend, SQLite database, and Next.js frontend with Tailwind v4.",
-        "overview": "Features live projects/skills from DB, contact form, and an AI chat endpoint. Deployed with uvicorn.",
-        "tags": "FastAPI,Next.js,SQLAlchemy,Tailwind CSS,TypeScript",
-        "github_url": "https://github.com/sinuarlowbaby",
-        "demo_url": "#",
-        "banner_accent": "#00e5ff",
-        "banner_gradient": "from-accent/20 to-primary/10",
-    },
+    }
 ]
 
+from app.database import supabase
 
 def seed():
-    db = SessionLocal()
     try:
         # ── Skills ──────────────────────────────────────────────────────────
-        existing_skills = db.query(Skill).count()
-        if existing_skills > 0:
-            print(f"Clearing {existing_skills} existing skills...")
-            db.query(Skill).delete()
-            db.commit()
-        for s in SKILLS:
-            db.add(Skill(**s))
-        db.commit()
-        print(f"✓ Seeded {len(SKILLS)} skills")
+        print("Clearing existing skills (if any)...")
+        # Supabase requires a filter for deletes. We'll delete where id > 0
+        supabase.table("skills").delete().gt("id", 0).execute()
+        
+        print(f"Inserting {len(SKILLS)} skills...")
+        supabase.table("skills").insert(SKILLS).execute()
+        print("✓ Seeded skills")
 
         # ── Projects ─────────────────────────────────────────────────────────
-        existing_projects = db.query(Project).count()
-        if existing_projects > 0:
-            print(f"Clearing {existing_projects} existing projects...")
-            db.query(Project).delete()
-            db.commit()
-        for p in PROJECTS:
-            db.add(Project(**p))
-        db.commit()
-        print(f"✓ Seeded {len(PROJECTS)} projects")
+        print("Clearing existing projects (if any)...")
+        supabase.table("projects").delete().gt("id", 0).execute()
 
-        print("\nDone! Restart uvicorn if it's already running.")
-    finally:
-        db.close()
+        print(f"Inserting {len(PROJECTS)} projects...")
+        supabase.table("projects").insert(PROJECTS).execute()
+        print("✓ Seeded projects")
+
+        print("\nDone! Refresh your frontend to see the data.")
+    except Exception as e:
+        print(f"\nError seeding database: {e}")
+        print("Note: Before you can seed the data, you must manually create the 'projects' and 'skills' tables in your Supabase UI.")
 
 
 if __name__ == "__main__":

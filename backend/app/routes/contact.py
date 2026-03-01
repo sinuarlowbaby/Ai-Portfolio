@@ -7,7 +7,8 @@ router = APIRouter(prefix="/contact", tags=["Contact"])
 
 @router.post("/")
 def submit_contact(contact: schemas.ContactCreate, db: Session = Depends(get_db)):
-    db_contact = models.Contact(**contact.model_dump())
-    db.add(db_contact)
+    new_contact = models.Contact(**contact.model_dump())
+    db.add(new_contact)
     db.commit()
+    db.refresh(new_contact)
     return {"message": "Contact saved successfully"}

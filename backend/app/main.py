@@ -1,10 +1,8 @@
 from fastapi import FastAPI
 from . import models
 from .routes import projects, skills, contact, ai
-from .database import engine, Base
+from .database import supabase
 from fastapi.middleware.cors import CORSMiddleware
-
-Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -15,6 +13,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 app.include_router(projects.router)
 app.include_router(contact.router)
