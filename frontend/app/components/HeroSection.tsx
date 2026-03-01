@@ -78,8 +78,8 @@ export default function HeroSection() {
                         View Projects
                     </a>
                     <a
-                        href="/resume.pdf"
-                        download="Sinu_Arlow_Baby_Resume.pdf"
+                        href="/sinu%20arlow%20baby%20gen%20ai%20application%20developer.pdf"
+                        download="sinu arlow baby gen ai application developer.pdf"
                         className="border border-primary/40 text-primary px-10 py-3.5 rounded-full font-semibold hover:bg-primary/10 hover:border-primary/70 transition-all flex items-center gap-2 group"
                     >
                         <Icons.Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />

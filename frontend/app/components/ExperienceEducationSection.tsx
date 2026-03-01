@@ -5,23 +5,24 @@ import { motion } from "framer-motion";
 const experience = [
     {
         type: "Experience",
-        year: "2024 – Present",
-        title: "GenAI Application Developer",
-        org: "Freelance / Self-directed",
+        year: "2025 – Present",
+        title: "Generative AI Developer",
+        org: "Self-directed / AICTE Internship",
         points: [
-            "Built RAG chatbots using LangChain, FAISS, and Ollama with FastAPI backends",
-            "Architected LLM pipelines with custom embedding + retrieval layers",
-            "Deployed production APIs with Docker and REST standards",
+            "Completed a specialized AICTE internship focusing on Generative AI applications and modern AI development frameworks.",
+            "Engineered a Custom RAG Chatbot prototype using Python, LangChain, and LLMs to answer queries based on custom datasets.",
+            "Implemented efficient vector search mechanisms to accurately retrieve relevant context, optimizing response quality and contextual awareness.",
         ],
     },
     {
         type: "Experience",
-        year: "2023",
+        year: "2024 – 2025",
         title: "Backend Developer",
-        org: "Personal Projects",
+        org: "OneIDE Platform · UG Final Year Project",
         points: [
-            "Developed OneIDE — a multi-language online compiler with Django",
-            "Implemented session-based auth and sandboxed code execution",
+            "Architected OneIDE, a full-stack collaborative online compiler allowing users to write and execute code in real-time using Django, Python, MySQL, and HTML/CSS.",
+            "Engineered secure backend systems with user authentication and session management leveraging Django's built-in auth system.",
+            "Developed a seamless Guest Mode feature enabling immediate, frictionless code execution without mandatory user registration.",
         ],
     },
 ];
@@ -29,12 +30,32 @@ const experience = [
 const education = [
     {
         type: "Education",
-        year: "2021 – 2025",
-        title: "B.Tech Computer Science",
-        org: "University (Kerala, India)",
+        year: "2025 – Present",
+        title: "Full Stack AI with Python",
+        org: "Udemy · Online Course",
         points: [
-            "Core focus: algorithms, data structures, software engineering",
-            "Final year project: AI-integrated portfolio system with FastAPI",
+            "Currently enrolled in a comprehensive course covering LLMs, prompt engineering, and full-stack AI application development.",
+            "Building real-world AI-powered apps integrating Python backends with modern LLM APIs.",
+        ],
+    },
+    {
+        type: "Education",
+        year: "2025 – 2027",
+        title: "Master of Computer Applications (MCA)",
+        org: "SRM Institute of Science and Technology",
+        points: [
+            "Core Specialization: Generative AI.",
+            "Currently pursuing advanced studies in modern software engineering, scalable backend systems (FastAPI), and AI-driven solutions.",
+        ],
+    },
+    {
+        type: "Education",
+        year: "2022 – 2025",
+        title: "Bachelor of Computer Applications (BCA)",
+        org: "CM College of Arts and Science",
+        points: [
+            "Core Focus: Web Development and Project Management.",
+            "Built a strong foundation in core computer science principles, database management, and full-stack web technologies.",
         ],
     },
 ];
