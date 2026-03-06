@@ -17,7 +17,7 @@ const experience = [
     {
         type: "Experience",
         year: "2024 – 2025",
-        title: "Full Stack Developer",
+        title: "Full Stack Python Developer",
         org: "OneIDE Platform · UG Final Year Project",
         points: [
             "Architected OneIDE, a full-stack collaborative online compiler allowing users to write and execute code in real-time using Django, Python, MySQL, and HTML/CSS.",
