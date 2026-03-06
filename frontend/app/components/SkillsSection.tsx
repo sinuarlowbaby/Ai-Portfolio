@@ -61,7 +61,7 @@ export default function SkillsSection() {
 
             {error && (
                 <p className="text-center text-red-400 text-sm mb-8">
-                    Could not load skills — is the backend running at <code>localhost:8000</code>?
+                    Could not load skills — make sure the API is deployed.
                 </p>
             )}
 

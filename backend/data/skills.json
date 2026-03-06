@@ -1,0 +1,35 @@
+{
+    "AI / GenAI": [
+        "LangChain",
+        "LlamaIndex",
+        "OpenAI API",
+        "Gemini API",
+        "HuggingFace",
+        "RAG Pipelines",
+        "Prompt Engineering",
+        "Vector Databases"
+    ],
+    "Backend": [
+        "FastAPI",
+        "Python",
+        "SQLAlchemy",
+        "Django",
+        "REST API"
+    ],
+    "Frontend": [
+        "Next.js",
+        "React"
+    ],
+    "Database": [
+        "PostgreSQL",
+        "SQLite",
+        "MySQL",
+        "ChromaDB",
+        "FAISS"
+    ],
+    "DevOps / Tools": [
+        "Git",
+        "Docker",
+        "GitHub Actions"
+    ]
+}

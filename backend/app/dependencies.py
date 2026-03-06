@@ -1,8 +1,12 @@
-from .database import SessionLocal
+"""
+dependencies.py — Dependency stubs (kept for future use).
+No database session needed in the database-less architecture.
+"""
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# Contact email config (add CONTACT_EMAIL to .env when ready for auto-mailing)
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+CONTACT_EMAIL = os.getenv("CONTACT_EMAIL", "")

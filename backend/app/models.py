@@ -1,36 +1,34 @@
-from sqlalchemy import Column, Integer, String, Text
-from .database import Base
+"""
+models.py — Data schema definitions (no database ORM).
+
+These TypedDicts document the shape of the data in backend/data/*.json.
+To modify the schema, update the JSON files and these definitions together.
+"""
+
+from typing import Optional
+from typing_extensions import TypedDict
 
 
-class Project(Base):
-    __tablename__ = "projects"
-
-    id = Column(Integer, primary_key=True, index=True)
-    slug = Column(String, unique=True, index=True, nullable=False)
-    title = Column(String, nullable=False)
-    subtitle = Column(String)
-    description = Column(Text)
-    overview = Column(Text)
-    tags = Column(String)           # comma-separated: "FastAPI,Python,SQLite"
-    github_url = Column(String)
-    demo_url = Column(String)
-    banner_accent = Column(String)  # hex color e.g. "#4f8ef7"
-    banner_gradient = Column(String)  # tailwind classes
+class Project(TypedDict, total=False):
+    id: int
+    slug: str
+    title: str
+    subtitle: Optional[str]
+    description: Optional[str]
+    overview: Optional[str]
+    tags: Optional[str]          # comma-separated: "FastAPI,Python"
+    github_url: Optional[str]
+    demo_url: Optional[str]
+    banner_accent: Optional[str]  # hex color e.g. "#4f8ef7"
+    banner_gradient: Optional[str]
 
 
-class Skill(Base):
-    __tablename__ = "skills"
-
-    id = Column(Integer, primary_key=True, index=True)
-    layer = Column(String, nullable=False)   # e.g. "AI / GenAI"
-    name = Column(String, nullable=False)    # e.g. "LangChain"
-    color = Column(String)                   # e.g. "#a855f7"
+class Skill(TypedDict):
+    layer: str    # e.g. "AI / GenAI"
+    name: str     # e.g. "LangChain"
 
 
-class Contact(Base):
-    __tablename__ = "contacts"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
-    email = Column(String, nullable=False)
-    message = Column(Text, nullable=False)
+class ContactMessage(TypedDict):
+    name: str
+    email: str
+    message: str

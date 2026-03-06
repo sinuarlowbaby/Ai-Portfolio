@@ -17,10 +17,7 @@ export interface Project {
 }
 
 export interface SkillsResponse {
-    backend: string[];
-    ai: string[];
-    database: string[];
-    tools: string[];
+    [layer: string]: string[];  // dynamic keys from skills.json
 }
 
 export interface ContactPayload {

@@ -47,13 +47,13 @@ export default function ProjectsPage() {
                         </p>
                     </motion.div>
 
-                    {error && <p className="text-center text-red-400 text-sm mb-8">Could not load projects — is the backend running?</p>}
+                    {error && <p className="text-center text-red-400 text-sm mb-8">Could not load projects — make sure the API is deployed.</p>}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {!projects
                             ? [0, 1, 2].map((i) => <SkeletonCard key={i} />)
                             : projects.length === 0
-                                ? <p className="col-span-3 text-center text-gray-500 py-16">No projects yet. Add them via the backend API.</p>
+                                ? <p className="col-span-3 text-center text-gray-500 py-16">No projects yet — add them to <code>backend/data/projects.json</code>.</p>
                                 : projects.map((project, i) => {
                                     const tags = project.tags?.split(",").map((t) => t.trim()).filter(Boolean) ?? [];
                                     const gradient = i % 2 === 0 ? "from-primary/20 to-secondary/10" : "from-accent/20 to-primary/10";

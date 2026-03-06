@@ -91,13 +91,13 @@ export default function ProjectsPreviewSection() {
                 </motion.a>
             </div>
 
-            {error && <p className="text-center text-red-400 text-sm mb-8">Could not load projects — is the backend running?</p>}
+            {error && <p className="text-center text-red-400 text-sm mb-8">Could not load projects — make sure the API is deployed.</p>}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {!projects
                     ? [0, 1].map((i) => <SkeletonCard key={i} />)
                     : projects.length === 0
-                        ? <p className="col-span-2 text-center text-gray-500">No projects found. Add some via the backend API.</p>
+                        ? <p className="col-span-2 text-center text-gray-500">No projects yet — add them to <code>backend/data/projects.json</code>.</p>
                         : projects.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)
                 }
             </div>

@@ -1,9 +1,15 @@
+"""
+schemas.py — Pydantic request/response models.
+No database ORM references.
+"""
+
 from pydantic import BaseModel
 from typing import Optional
 
-# ─── Projects ─────────────────────────────────────────────────────────────────
+# ─── Projects ────────────────────────────────────────────────────────────────
 
-class ProjectBase(BaseModel):
+class ProjectResponse(BaseModel):
+    id: int
     slug: str
     title: str
     subtitle: Optional[str] = None
@@ -15,42 +21,14 @@ class ProjectBase(BaseModel):
     banner_accent: Optional[str] = None  # hex color e.g. "#4f8ef7"
     banner_gradient: Optional[str] = None
 
-class ProjectCreate(ProjectBase):
-    pass
-
-class ProjectResponse(ProjectBase):
-    id: int
-    class Config:
-        from_attributes = True
-
-# ─── Skills ───────────────────────────────────────────────────────────────────
-
-class SkillBase(BaseModel):
-    layer: str
-    name: str
-    color: Optional[str] = None
-
-class SkillCreate(SkillBase):
-    pass
-
-class SkillResponse(SkillBase):
-    id: int
-    class Config:
-        from_attributes = True
-
-# ─── Contact ──────────────────────────────────────────────────────────────────
+# ─── Contact ─────────────────────────────────────────────────────────────────
 
 class ContactCreate(BaseModel):
     name: str
     email: str
     message: str
 
-class ContactResponse(ContactCreate):
-    id: int
-    class Config:
-        from_attributes = True
-
-# ─── AI ───────────────────────────────────────────────────────────────────────
+# ─── AI ──────────────────────────────────────────────────────────────────────
 
 class AIRequest(BaseModel):
     question: str

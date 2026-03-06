@@ -94,12 +94,12 @@ export default function ContactSection() {
 
                     {status === "success" && (
                         <div className="px-4 py-3 rounded-xl bg-green-500/10 border border-green-500/25 text-green-400 text-sm">
-                            <strong>Sent!</strong> I&apos;ll get back to you soon.
+                            <strong>Sent!</strong> I&apos;ll get back to you via email soon.
                         </div>
                     )}
                     {status === "error" && (
                         <div className="px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/25 text-red-400 text-sm">
-                            <strong>Failed.</strong> Make sure the backend is running.
+                            <strong>Failed.</strong> Something went wrong — please try again or reach out via email directly.
                         </div>
                     )}
 
