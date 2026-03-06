@@ -1,6 +1,6 @@
 # 🤖 AI Portfolio
 
-A full-stack AI developer portfolio built with **Next.js 15** (frontend) and **FastAPI** (backend), connected to a **Supabase PostgreSQL** database. The portfolio showcases projects, skills, and includes a contact form with an AI chat endpoint.
+A full-stack AI developer portfolio built with **Next.js 15** (frontend) and **FastAPI** (backend). **No database required** — all data is stored in editable JSON files.
 
 ---
 
@@ -8,26 +8,27 @@ A full-stack AI developer portfolio built with **Next.js 15** (frontend) and **F
 
 ```
 ai-portfolio/
-├── backend/          # FastAPI Python backend
+├── backend/                  # FastAPI Python backend
 │   ├── app/
-│   │   ├── main.py       # FastAPI app entry point & CORS config
-│   │   ├── database.py   # SQLAlchemy + Supabase client setup
-│   │   ├── models.py     # ORM models (Project, Skill, Contact)
-│   │   ├── schemas.py    # Pydantic schemas
-│   │   ├── dependencies.py
+│   │   ├── main.py           # FastAPI app entry point & CORS config
+│   │   ├── data_store.py     # Reads data from JSON files
+│   │   ├── models.py         # Data schema definitions (TypedDict)
+│   │   ├── schemas.py        # Pydantic response schemas
+│   │   ├── dependencies.py   # Config stubs (future email support)
 │   │   └── routes/
-│   │       ├── projects.py
-│   │       ├── skills.py
-│   │       ├── contact.py
-│   │       └── ai.py     # AI chat endpoint (placeholder)
-│   ├── seed.py           # Database seeder
-│   ├── reset_db.py       # Reset/recreate tables
+│   │       ├── projects.py   # GET /projects/
+│   │       ├── skills.py     # GET /skills/
+│   │       ├── contact.py    # POST /contact/ (log → future email)
+│   │       └── ai.py         # POST /ai/chat (placeholder)
+│   ├── data/
+│   │   ├── projects.json     # ✏️ Edit to add/update projects
+│   │   └── skills.json       # ✏️ Edit to add/update skills
 │   ├── requirements.txt
-│   ├── Procfile          # For deployment (e.g. Render)
+│   ├── Procfile              # Render deployment config
 │   └── runtime.txt
-└── frontend/         # Next.js 15 frontend
-    ├── app/              # App Router pages & components
-    ├── services/         # API service helpers
+└── frontend/                 # Next.js 15 frontend
+    ├── app/                  # App Router pages & components
+    ├── services/             # API service helpers
     ├── public/
     ├── package.json
     └── next.config.ts
@@ -37,11 +38,11 @@ ai-portfolio/
 
 ## ✨ Features
 
-- 🗂️ **Projects** — Showcases projects fetched dynamically from the database
-- 🧠 **Skills** — Displays tech stack grouped by layer (AI/GenAI, Backend, Frontend, etc.)
-- 📬 **Contact Form** — Saves messages to the database via POST `/contact/`
-- 🤖 **AI Chat Endpoint** — `/ai/chat` endpoint ready for LLM integration
-- 🌐 **CORS** configured for local development and Vercel deployment
+- 🗂️ **Projects** — Fetched from `data/projects.json`, no database needed
+- 🧠 **Skills** — Grouped by layer from `data/skills.json`
+- 📬 **Contact Form** — Logs messages to stdout, ready for email integration
+- 🤖 **AI Chat Endpoint** — `/ai/chat` ready for LLM integration
+- 🌐 **CORS** configured for local dev and Vercel deployment
 - 🎨 **Framer Motion** animations throughout the frontend
 
 ---
@@ -52,8 +53,6 @@ ai-portfolio/
 | Tech | Purpose |
 |---|---|
 | FastAPI | REST API framework |
-| SQLAlchemy | ORM for PostgreSQL |
-| Supabase | Hosted PostgreSQL + client SDK |
 | Pydantic | Data validation & schemas |
 | python-dotenv | Environment variable management |
 | Uvicorn | ASGI server |
@@ -73,14 +72,13 @@ ai-portfolio/
 ### Prerequisites
 - Python 3.11+
 - Node.js 18+
-- A [Supabase](https://supabase.com) project with PostgreSQL
 
 ---
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/ai-portfolio.git
+git clone https://github.com/sinuarlowbaby/Ai-Portfolio.git
 cd ai-portfolio
 ```
 
@@ -100,31 +98,16 @@ venv\Scripts\activate        # Windows
 pip install -r requirements.txt
 ```
 
-#### Configure Environment Variables
-
-Create a `.env` file inside the `backend/` directory:
-
-```env
-DATABASE_URL=postgresql://postgres:<password>@<host>:<port>/<dbname>
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-supabase-anon-key
-```
-
-#### Seed the Database (first time)
-
-```bash
-python reset_db.py   # Creates tables
-python seed.py       # Populates with initial data
-```
-
 #### Run the Backend
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-API will be available at: `http://localhost:8000`  
+API available at: `http://localhost:8000`  
 Swagger docs: `http://localhost:8000/docs`
+
+> **No `.env` required** — there are no database credentials. The `.env` file only holds optional future config (e.g. SMTP for email).
 
 ---
 
@@ -132,14 +115,10 @@ Swagger docs: `http://localhost:8000/docs`
 
 ```bash
 cd frontend
-
-# Install dependencies
 npm install
 ```
 
-#### Configure Environment Variables
-
-Create a `.env.local` file inside the `frontend/` directory:
+Create a `.env.local` file inside `frontend/`:
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:8000
@@ -151,15 +130,47 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 npm run dev
 ```
 
-Frontend will be available at: `http://localhost:3000`
+Frontend available at: `http://localhost:3000`
+
+---
+
+## ✏️ Editing Your Data
+
+### Add / Edit a Project
+Open `backend/data/projects.json` and add or modify an entry:
+
+```json
+{
+  "id": 3,
+  "slug": "my-project",
+  "title": "My Project",
+  "subtitle": "Short tagline",
+  "description": "What this project does.",
+  "overview": "Technical details...",
+  "tags": "Python,FastAPI,React",
+  "github_url": "https://github.com/sinuarlowbaby/my-project",
+  "demo_url": "https://my-project.vercel.app",
+  "banner_accent": "#10b981",
+  "banner_gradient": "from-green-400/20 to-primary/10"
+}
+```
+
+### Add / Edit a Skill
+Open `backend/data/skills.json` and add a skill to any layer (or create a new layer):
+
+```json
+"AI / GenAI": ["LangChain", "Gemini API", "Your New Skill"]
+```
+
+**Redeploy the backend** after any data change — no migrations, no database commands.
 
 ---
 
 ## 🚀 Deployment
 
-### Backend → Render / Railway
-1. Push the `backend/` folder to a GitHub repo (or use a monorepo).
-2. Set the environment variables (`DATABASE_URL`, `SUPABASE_URL`, `SUPABASE_KEY`) in the platform dashboard.
+### Backend → Render
+1. Push to GitHub (data JSON files are committed and included).
+2. No environment variables needed (remove any old Supabase vars from the dashboard).
 3. The `Procfile` is already configured:
    ```
    web: uvicorn app.main:app --host 0.0.0.0 --port $PORT
@@ -167,14 +178,14 @@ Frontend will be available at: `http://localhost:3000`
 
 ### Frontend → Vercel
 1. Connect your GitHub repo to [Vercel](https://vercel.com).
-2. Set the **Root Directory** to `frontend`.
+2. Set **Root Directory** to `frontend`.
 3. Add environment variable:
    ```
-   NEXT_PUBLIC_API_URL=https://your-backend-url.onrender.com
+   NEXT_PUBLIC_API_URL=https://your-backend.onrender.com
    ```
 4. Deploy!
 
-> After deploying the backend, remember to update the `allow_origins` list in `backend/app/main.py` with your real Vercel URL.
+> After deploying the backend, update `allow_origins` in `backend/app/main.py` with your real Vercel URL.
 
 ---
 
@@ -183,11 +194,24 @@ Frontend will be available at: `http://localhost:3000`
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/` | Health check |
-| GET | `/projects/` | List all projects |
-| GET | `/projects/{slug}` | Get project by slug |
-| GET | `/skills/` | List all skills |
-| POST | `/contact/` | Submit a contact message |
-| POST | `/ai/chat` | AI chat (placeholder) |
+| GET | `/projects/` | List all projects (from JSON) |
+| GET | `/skills/` | List all skills grouped by layer |
+| POST | `/contact/` | Submit contact message (logged, future email) |
+| POST | `/ai/chat` | AI chat (placeholder for LLM) |
+
+---
+
+## 📧 Future: Auto-Email on Contact
+
+When ready, add these to `backend/.env` and implement the SMTP logic in `routes/contact.py`:
+
+```env
+CONTACT_EMAIL=your-email@example.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@example.com
+SMTP_PASS=your-app-password
+```
 
 ---
 
