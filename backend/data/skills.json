@@ -1,35 +1,67 @@
 {
-    "AI / GenAI": [
+    "LLM & GenAI": [
         "LangChain",
+        "LangGraph",
         "LlamaIndex",
-        "OpenAI API",
+        "OpenAI GPT-4o",
+        "Groq LLaMA 3.3 70B",
         "Gemini API",
-        "HuggingFace",
-        "RAG Pipelines",
+        "HuggingFace Transformers",
         "Prompt Engineering",
+        "Multi-Query Expansion",
+        "Cross-Encoder Reranking"
+    ],
+    "RAG & Retrieval": [
+        "RAG Pipelines",
+        "Hybrid Search (BM25 + MMR)",
+        "Semantic Chunking",
+        "Qdrant",
+        "ChromaDB",
+        "FAISS",
+        "Semantic Caching",
+        "EnsembleRetriever",
         "Vector Databases"
+    ],
+    "Agentic AI": [
+        "LangGraph StateGraph",
+        "Plan-Execute-Evaluate Loop",
+        "Tool-Use Agents",
+        "Tavily Search API",
+        "PydanticOutputParser",
+        "LCEL Chains",
+        "Multi-Step Reasoning",
+        "Conditional Graph Edges"
     ],
     "Backend": [
         "FastAPI",
-        "Python",
-        "SQLAlchemy",
+        "Python 3.11",
         "Django",
-        "REST API"
+        "SQLAlchemy ORM",
+        "Pydantic v2",
+        "Uvicorn / Gunicorn",
+        "REST API Design",
+        "Server-Sent Events (SSE)",
+        "JWT / OAuth 2.0",
+        "Google OAuth"
     ],
-    "Frontend": [
-        "Next.js",
-        "React"
-    ],
-    "Database": [
+    "Databases & Infra": [
         "PostgreSQL",
         "SQLite",
         "MySQL",
-        "ChromaDB",
-        "FAISS"
-    ],
-    "DevOps / Tools": [
-        "Git",
+        "Redis / Valkey",
         "Docker",
-        "GitHub Actions"
+        "Docker Compose",
+        "Alembic Migrations",
+        "dj-database-url"
+    ],
+    "Frontend & Tools": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Git & GitHub",
+        "GitHub Actions",
+        "CodeMirror",
+        "Render / Heroku"
     ]
 }

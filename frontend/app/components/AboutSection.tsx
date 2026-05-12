@@ -16,24 +16,24 @@ const traits = [
         color: "text-primary",
         bg: "bg-primary/10",
         border: "border-primary/20",
-        label: "GenAI Developer",
-        desc: "Building production-grade RAG pipelines, agentic AI systems with LangGraph, and LLM-powered APIs using FastAPI and LangChain.",
-    },
-    {
-        icon: Icons.Server,
-        color: "text-secondary",
-        bg: "bg-secondary/10",
-        border: "border-secondary/20",
-        label: "Backend Engineer",
-        desc: "Designing async REST APIs with FastAPI, Django MVT platforms, PostgreSQL/SQLite schemas, and OAuth + JWT authentication systems.",
+        label: "LLM & RAG Engineer",
+        desc: "Building production-grade RAG pipelines with multi-stage retrieval — multi-query expansion, hybrid BM25+MMR, cross-encoder reranking, and semantic caching.",
     },
     {
         icon: Icons.Zap,
         color: "text-accent",
         bg: "bg-accent/10",
         border: "border-accent/20",
-        label: "AI Systems Thinker",
-        desc: "Architecting retrieval systems with Qdrant, ChromaDB, hybrid BM25+MMR search, cross-encoder reranking, and semantic caching.",
+        label: "Agentic AI Systems",
+        desc: "Designing LangGraph StateGraph agents with Plan-Execute-Evaluate loops, tool-use (web search, data analysis), and structured Pydantic-validated LLM outputs.",
+    },
+    {
+        icon: Icons.Server,
+        color: "text-secondary",
+        bg: "bg-secondary/10",
+        border: "border-secondary/20",
+        label: "Backend & API Design",
+        desc: "Shipping async FastAPI/Django backends with SQLAlchemy ORM, OAuth 2.0 + JWT auth, SSE streaming, Docker Compose, and Alembic migrations.",
     },
 ];
 
@@ -77,22 +77,22 @@ export default function AboutSection() {
                             </div>
                             <div>
                                 <p className="font-bold text-white">Sinu Arlow Baby</p>
-                                <p className="text-xs text-gray-400">GenAI Application Developer</p>
+                                <p className="text-xs text-gray-400">AI Engineer · LLM · RAG · Agentic Systems</p>
                             </div>
                         </div>
 
                         <p className="text-gray-300 leading-relaxed mb-4 text-sm">
-                            I&apos;m a <span className="text-primary font-semibold">GenAI Application Developer</span> pursuing my MCA
-                            with an AI specialization at SRM Institute. I build end-to-end intelligent systems — from
-                            multi-stage RAG pipelines and agentic AI workflows to full-stack web platforms deployed in production.
+                            I&apos;m an <span className="text-primary font-semibold">AI Engineer</span> pursuing my MCA
+                            with an AI specialization at SRM Institute. I design and ship end-to-end intelligent systems —
+                            production RAG pipelines, LangGraph agentic workflows, and full-stack AI-powered platforms.
                         </p>
                         <p className="text-gray-400 leading-relaxed text-sm mb-5">
-                            My focus is on systems where AI is the architecture — not bolted on. I&apos;ve built a
-                            5-stage retrieval chatbot with cross-encoder reranking, a{" "}
-                            <span className="text-accent font-semibold">LangGraph agentic loop</span> with tool-use and
-                            self-evaluation, an{" "}
-                            <span className="text-secondary font-semibold">AI career coaching platform</span> with mock
-                            interviews, and a full-stack online IDE deployed to production.
+                            I engineer systems where AI is the core architecture — not an add-on. Projects include a
+                            5-stage RAG chatbot with cross-encoder reranking &amp; semantic caching, a{" "}
+                            <span className="text-accent font-semibold">LangGraph Plan-Execute-Evaluate agent</span> with
+                            real-world tool use, an{" "}
+                            <span className="text-secondary font-semibold">AI career coaching platform</span> with ATS scoring
+                            and mock interview engine, and a live multi-language online IDE.
                         </p>
 
                         <div className="flex flex-wrap gap-2">
@@ -177,7 +177,7 @@ export default function AboutSection() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="font-semibold text-white mb-1">View Full Resume</p>
-                                <p className="text-xs text-gray-400">GenAI Developer · FastAPI · LLM Systems</p>
+                                <p className="text-xs text-gray-400">AI Engineer · FastAPI · LLM · RAG · Agentic AI</p>
                             </div>
                             <a
                                 href="/SINU BABY AI-ENGINNER Professional Resume LaTex.pdf"
