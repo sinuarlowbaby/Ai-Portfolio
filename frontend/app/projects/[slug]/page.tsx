@@ -107,21 +107,33 @@ export default function ProjectDetailPage() {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen bg-[#030014] pt-24 pb-24">
-                {/* ── Hero Banner ─────────────────────────────────────────── */}
+            <main className="min-h-screen bg-[#030014] pb-24">
+                {/* ── Hero Banner — full bleed with smooth bottom fade ─────── */}
                 <div
-                    className="relative overflow-hidden border-b border-white/5"
+                    className="relative overflow-hidden pt-24"
                     style={{
-                        background: `linear-gradient(135deg, ${gradientFrom} 0%, ${gradientTo} 60%, transparent 100%)`,
+                        background: `linear-gradient(160deg, ${gradientFrom} 0%, ${gradientTo} 50%, #030014 100%)`,
                     }}
                 >
-                    {/* Ambient glow */}
+                    {/* Ambient glow top-left */}
                     <div
-                        className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-[120px] opacity-30 pointer-events-none"
+                        className="absolute -top-24 -left-24 w-[500px] h-[500px] rounded-full blur-[140px] opacity-25 pointer-events-none"
                         style={{ background: accentColor }}
                     />
+                    {/* Secondary glow right */}
+                    <div
+                        className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10 pointer-events-none"
+                        style={{ background: accentColor }}
+                    />
+                    {/* Bottom fade overlay — blends hero into body seamlessly */}
+                    <div
+                        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+                        style={{
+                            background: "linear-gradient(to bottom, transparent 0%, #030014 100%)",
+                        }}
+                    />
 
-                    <div className="max-w-5xl mx-auto px-6 py-16 relative z-10">
+                    <div className="max-w-5xl mx-auto px-6 pb-28 pt-8 relative z-10">
                         {/* Back link */}
                         <motion.div
                             initial={{ opacity: 0, x: -12 }}
@@ -219,7 +231,7 @@ export default function ProjectDetailPage() {
                 </div>
 
                 {/* ── Body Content ────────────────────────────────────────── */}
-                <div className="max-w-5xl mx-auto px-6 mt-16 space-y-16">
+                <div className="max-w-5xl mx-auto px-6 space-y-16">
                     {/* Overview */}
                     <motion.section
                         initial={{ opacity: 0, y: 24 }}
