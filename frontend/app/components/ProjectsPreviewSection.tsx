@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Icons } from "./ui/Icons";
 import { getProjects, type Project } from "@/services/api";
 
@@ -22,21 +23,29 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                     {tags.map((t) => <span key={t} className="tech-badge">{t}</span>)}
                 </div>
 
-                <h3 className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors">{project.title}</h3>
+                <Link href={`/projects/${project.slug}`}>
+                    <h3 className="text-2xl font-bold mb-1 group-hover:text-primary transition-colors cursor-pointer">{project.title}</h3>
+                </Link>
                 {project.subtitle && <p className="text-gray-400 text-sm font-medium mb-4">{project.subtitle}</p>}
                 <p className="text-gray-300 leading-relaxed text-sm mb-5 flex-1">{project.description}</p>
 
                 <div className="flex gap-3 mt-auto">
-                    {project.demo_url && project.demo_url !== "#" && (
-                        <a href={project.demo_url} target="_blank" rel="noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-all">
-                            <Icons.Globe className="w-4 h-4" /> Live Demo
-                        </a>
-                    )}
+                    <Link
+                        href={`/projects/${project.slug}`}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-all"
+                    >
+                        View Details
+                    </Link>
                     {project.github_url && (
                         <a href={project.github_url} target="_blank" rel="noreferrer"
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-white/20 text-white text-sm font-semibold hover:bg-white/10 transition-all">
-                            <Icons.Github className="w-4 h-4" /> GitHub
+                            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-white/20 text-white text-sm font-semibold hover:bg-white/10 transition-all">
+                            <Icons.Github className="w-4 h-4" />
+                        </a>
+                    )}
+                    {project.demo_url && project.demo_url !== "#" && (
+                        <a href={project.demo_url} target="_blank" rel="noreferrer"
+                            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-white/20 text-white text-sm font-semibold hover:bg-white/10 transition-all">
+                            <Icons.Globe className="w-4 h-4" />
                         </a>
                     )}
                 </div>
