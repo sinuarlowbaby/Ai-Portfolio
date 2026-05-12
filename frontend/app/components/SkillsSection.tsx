@@ -52,10 +52,10 @@ export default function SkillsSection() {
                 className="text-center mb-16"
             >
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    <span className="text-gradient">Architecture Stack</span>
+                    <span className="text-gradient">Engineering Stack</span>
                 </h2>
                 <p className="text-gray-400 max-w-xl mx-auto">
-                    Skills organized by system layers — the way an architect thinks.
+                    Every layer of the AI engineering stack — from LLM inference to deployment.
                 </p>
             </motion.div>
 

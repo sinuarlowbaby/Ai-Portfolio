@@ -2,13 +2,13 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "GenAI Developer | FastAPI | LLM Architectures | Sinu Arlow Baby",
-    description: "Portfolio of Sinu Arlow Baby — GenAI Application Developer specializing in LLM pipelines, RAG architectures, and production FastAPI backends.",
-    keywords: ["GenAI", "LLM", "RAG", "FastAPI", "AI Engineer", "Sinu Arlow Baby"],
+    title: "AI Engineer | LLM · RAG · Agentic AI | Sinu Arlow Baby",
+    description: "Portfolio of Sinu Arlow Baby — AI Engineer specializing in LLM systems, multi-stage RAG pipelines, LangGraph agentic AI, and production FastAPI backends.",
+    keywords: ["AI Engineer", "LLM", "RAG", "LangGraph", "FastAPI", "Agentic AI", "Sinu Arlow Baby", "GenAI"],
     authors: [{ name: "Sinu Arlow Baby" }],
     openGraph: {
-        title: "Sinu Arlow Baby | GenAI Application Developer",
-        description: "Designing production-ready GenAI systems — LLM pipelines, RAG architectures, and intelligent backend APIs.",
+        title: "Sinu Arlow Baby | AI Engineer — LLM · RAG · Agentic Systems",
+        description: "Building production-grade AI systems — multi-stage RAG pipelines, LangGraph agentic workflows, and intelligent FastAPI backends.",
         type: "website",
     },
 };

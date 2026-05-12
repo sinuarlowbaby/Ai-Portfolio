@@ -2,14 +2,25 @@
 
 import { motion } from "framer-motion";
 import { Icons } from "./ui/Icons";
+import ResumeDownloadButton from "./ResumeDownloadButton";
 
-const tags = ["FastAPI", "LLM Architectures", "RAG Systems", "Production APIs"];
+const tags = ["AI Engineer", "LLM Systems", "RAG Architectures", "Agentic AI", "FastAPI"];
 
 const fade = (delay = 0) => ({
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.7, delay },
 });
+
+// Floating tech stack pills that orbit the hero
+const floatingItems = [
+    { label: "LangGraph", x: "8%", y: "22%", delay: "0s", dur: "4s" },
+    { label: "GPT-4o", x: "78%", y: "18%", delay: "1.2s", dur: "5s" },
+    { label: "Qdrant", x: "85%", y: "55%", delay: "0.6s", dur: "3.5s" },
+    { label: "FastAPI", x: "6%", y: "60%", delay: "2s", dur: "4.5s" },
+    { label: "LangChain", x: "20%", y: "78%", delay: "1.8s", dur: "6s" },
+    { label: "RAG", x: "72%", y: "78%", delay: "0.3s", dur: "5.5s" },
+];
 
 export default function HeroSection() {
     return (
@@ -19,8 +30,24 @@ export default function HeroSection() {
             <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-secondary/15 rounded-full blur-[120px] animate-pulse delay-1000" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[150px]" />
 
-            {/* Floating particles */}
+            {/* Floating tech pills */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+                {floatingItems.map((item, i) => (
+                    <div
+                        key={i}
+                        className="absolute animate-float text-xs font-semibold px-3 py-1 rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur-sm"
+                        style={{
+                            left: item.x,
+                            top: item.y,
+                            animationDelay: item.delay,
+                            animationDuration: item.dur,
+                        }}
+                    >
+                        {item.label}
+                    </div>
+                ))}
+
+                {/* Small particle dots */}
                 {[
                     { left: "15%", top: "20%", delay: "0s", dur: "3s", color: "bg-primary/40" },
                     { left: "30%", top: "45%", delay: "0.7s", dur: "3.5s", color: "bg-primary/40" },
@@ -29,7 +56,7 @@ export default function HeroSection() {
                     { left: "90%", top: "40%", delay: "3.5s", dur: "5.5s", color: "bg-secondary/30" },
                 ].map((p, i) => (
                     <div
-                        key={i}
+                        key={`dot-${i}`}
                         className={`absolute w-1 h-1 ${p.color} rounded-full animate-float`}
                         style={{ left: p.left, top: p.top, animationDelay: p.delay, animationDuration: p.dur }}
                     />
@@ -54,22 +81,41 @@ export default function HeroSection() {
                     transition={{ duration: 0.9, delay: 0.2 }}
                     className="text-5xl md:text-7xl font-bold leading-tight mb-4"
                 >
-                    <span className="text-gradient-animated">GenAI Application</span>
+                    <span className="text-gradient-animated">AI Engineer</span>
                     <br />
-                    <span className="text-white">Developer</span>
+                    <span className="text-white text-4xl md:text-5xl font-semibold">LLM · RAG · Agentic Systems</span>
                 </motion.h1>
 
                 {/* Subtitle */}
-                <motion.p {...fade(0.4)} className="mt-4 max-w-2xl mx-auto text-gray-300 text-lg md:text-xl leading-relaxed">
-                    Designing{" "}
-                    <span className="text-primary font-semibold">production-ready GenAI systems</span>
+                <motion.p {...fade(0.4)} className="mt-6 max-w-2xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed">
+                    Building{" "}
+                    <span className="text-primary font-semibold">production-grade AI systems</span>
                     {" "}—{" "}
-                    <span className="text-accent font-semibold">LLM pipelines</span>,{" "}
-                    <span className="text-secondary font-semibold">RAG architectures</span>, and intelligent backend APIs.
+                    <span className="text-accent font-semibold">multi-stage RAG pipelines</span>,{" "}
+                    <span className="text-secondary font-semibold">LangGraph agentic workflows</span>, and
+                    intelligent FastAPI backends that ship to production.
                 </motion.p>
 
+                {/* Micro stats */}
+                <motion.div
+                    {...fade(0.55)}
+                    className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-400"
+                >
+                    {[
+                        { v: "5+", l: "AI Projects" },
+                        { v: "GPT-4o", l: "LLM of choice" },
+                        { v: "LangGraph", l: "Agent framework" },
+                        { v: "MCA", l: "AI Specialization" },
+                    ].map(({ v, l }) => (
+                        <div key={l} className="flex flex-col items-center gap-0.5">
+                            <span className="text-white font-bold text-base">{v}</span>
+                            <span className="text-gray-500 text-xs">{l}</span>
+                        </div>
+                    ))}
+                </motion.div>
+
                 {/* CTAs */}
-                <motion.div {...fade(0.6)} className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4">
+                <motion.div {...fade(0.7)} className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4">
                     <a
                         href="/projects"
                         className="animate-glow bg-primary text-white px-10 py-3.5 rounded-full font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/50 flex items-center gap-2 group"
@@ -77,14 +123,10 @@ export default function HeroSection() {
                         <Icons.Briefcase className="w-5 h-5 group-hover:scale-110 transition-transform" />
                         View Projects
                     </a>
-                    <a
-                        href="/sinu%20arlow%20baby%20gen%20ai%20application%20developer.pdf"
-                        download="sinu arlow baby gen ai application developer.pdf"
+                    <ResumeDownloadButton
+                        label="Resume"
                         className="border border-primary/40 text-primary px-10 py-3.5 rounded-full font-semibold hover:bg-primary/10 hover:border-primary/70 transition-all flex items-center gap-2 group"
-                    >
-                        <Icons.Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                        Resume
-                    </a>
+                    />
                 </motion.div>
             </div>
 
