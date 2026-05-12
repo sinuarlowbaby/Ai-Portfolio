@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Icons } from "./ui/Icons";
+import ResumeDownloadButton from "./ResumeDownloadButton";
 
 const tags = ["AI Engineer", "LLM Systems", "RAG Architectures", "Agentic AI", "FastAPI"];
 
@@ -122,14 +123,10 @@ export default function HeroSection() {
                         <Icons.Briefcase className="w-5 h-5 group-hover:scale-110 transition-transform" />
                         View Projects
                     </a>
-                    <a
-                        href="/SINU BABY AI-ENGINNER Professional Resume LaTex.pdf"
-                        download="Sinu_Arlow_Baby_Resume.pdf"
+                    <ResumeDownloadButton
+                        label="Resume"
                         className="border border-primary/40 text-primary px-10 py-3.5 rounded-full font-semibold hover:bg-primary/10 hover:border-primary/70 transition-all flex items-center gap-2 group"
-                    >
-                        <Icons.Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                        Resume
-                    </a>
+                    />
                 </motion.div>
             </div>
 

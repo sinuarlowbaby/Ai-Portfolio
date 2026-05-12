@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Icons } from "./ui/Icons";
+import ResumeDownloadButton from "./ResumeDownloadButton";
 
 const stats = [
     { value: "5+", label: "AI Projects Built" },
@@ -179,14 +180,10 @@ export default function AboutSection() {
                                 <p className="font-semibold text-white mb-1">View Full Resume</p>
                                 <p className="text-xs text-gray-400">AI Engineer · FastAPI · LLM · RAG · Agentic AI</p>
                             </div>
-                            <a
-                                href="/SINU BABY AI-ENGINNER Professional Resume LaTex.pdf"
-                                download="Sinu_Arlow_Baby_Resume.pdf"
+                            <ResumeDownloadButton
+                                label="Download"
                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-all"
-                            >
-                                <Icons.Download className="w-4 h-4" />
-                                Download
-                            </a>
+                            />
                         </div>
                     </motion.div>
                 </div>
