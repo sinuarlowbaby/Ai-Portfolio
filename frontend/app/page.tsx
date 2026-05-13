@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen bg-[#030014] overflow-hidden">
+            <main className="min-h-screen page-bg overflow-hidden">
                 <HeroSection />
                 <AboutSection />
                 <SkillsSection />

@@ -1,132 +1,88 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Icons } from "./ui/Icons";
+import Link from "next/link";
 import ResumeDownloadButton from "./ResumeDownloadButton";
+import { Icons } from "./ui/Icons";
+import { fadeIn as fade } from "@/app/lib/motion";
 
-const tags = ["AI Engineer", "LLM Systems", "RAG Architectures", "Agentic AI", "FastAPI"];
-
-const fade = (delay = 0) => ({
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.7, delay },
-});
-
-// Floating tech stack pills that orbit the hero
-const floatingItems = [
-    { label: "LangGraph", x: "8%", y: "22%", delay: "0s", dur: "4s" },
-    { label: "GPT-4o", x: "78%", y: "18%", delay: "1.2s", dur: "5s" },
-    { label: "Qdrant", x: "85%", y: "55%", delay: "0.6s", dur: "3.5s" },
-    { label: "FastAPI", x: "6%", y: "60%", delay: "2s", dur: "4.5s" },
-    { label: "LangChain", x: "20%", y: "78%", delay: "1.8s", dur: "6s" },
-    { label: "RAG", x: "72%", y: "78%", delay: "0.3s", dur: "5.5s" },
+const stats = [
+    { value: "5+",       label: "AI Projects"      },
+    { value: "GPT-4o",   label: "LLM of choice"    },
+    { value: "LangGraph",label: "Agent framework"  },
+    { value: "MCA",      label: "AI Specialization" },
 ];
 
 export default function HeroSection() {
     return (
-        <section className="relative flex flex-col items-center justify-center min-h-screen text-center px-6 overflow-hidden">
-            {/* Background orbs */}
-            <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/15 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-secondary/15 rounded-full blur-[120px] animate-pulse delay-1000" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[150px]" />
+        <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center overflow-hidden">
 
-            {/* Floating tech pills */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
-                {floatingItems.map((item, i) => (
-                    <div
-                        key={i}
-                        className="absolute animate-float text-xs font-semibold px-3 py-1 rounded-full border border-white/10 bg-white/5 text-gray-400 backdrop-blur-sm"
-                        style={{
-                            left: item.x,
-                            top: item.y,
-                            animationDelay: item.delay,
-                            animationDuration: item.dur,
-                        }}
-                    >
-                        {item.label}
-                    </div>
-                ))}
+            {/* Single subtle top gradient */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                aria-hidden
+                style={{
+                    background:
+                        "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(103,232,249,0.07) 0%, transparent 60%)",
+                }}
+            />
 
-                {/* Small particle dots */}
-                {[
-                    { left: "15%", top: "20%", delay: "0s", dur: "3s", color: "bg-primary/40" },
-                    { left: "30%", top: "45%", delay: "0.7s", dur: "3.5s", color: "bg-primary/40" },
-                    { left: "60%", top: "20%", delay: "2.1s", dur: "4.5s", color: "bg-accent/30" },
-                    { left: "75%", top: "65%", delay: "2.8s", dur: "5s", color: "bg-accent/30" },
-                    { left: "90%", top: "40%", delay: "3.5s", dur: "5.5s", color: "bg-secondary/30" },
-                ].map((p, i) => (
-                    <div
-                        key={`dot-${i}`}
-                        className={`absolute w-1 h-1 ${p.color} rounded-full animate-float`}
-                        style={{ left: p.left, top: p.top, animationDelay: p.delay, animationDuration: p.dur }}
-                    />
-                ))}
-            </div>
+            <div className="relative z-10 max-w-2xl pt-28 pb-20">
 
-            <div className="z-10 max-w-4xl">
-                {/* Tech tags */}
-                <motion.div {...fade(0)} className="flex flex-wrap justify-center gap-2 mb-8">
-                    {tags.map((t) => <span key={t} className="tech-badge">{t}</span>)}
-                </motion.div>
-
-                {/* Greeting */}
-                <motion.p {...fade(0.1)} className="text-lg md:text-xl font-medium text-accent mb-3 tracking-wide">
-                    Hi, I am Sinu Arlow Baby
+                {/* Eyebrow label */}
+                <motion.p {...fade(0)} className="section-label mb-6">
+                    AI Engineer
                 </motion.p>
 
-                {/* H1 */}
+                {/* H1 — plain white, only ONE accent phrase */}
                 <motion.h1
-                    initial={{ opacity: 0, scale: 0.92 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.9, delay: 0.2 }}
-                    className="text-5xl md:text-7xl font-bold leading-tight mb-4"
+                    {...fade(0.08)}
+                    className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight text-white mb-6"
                 >
-                    <span className="text-gradient-animated">AI Engineer</span>
+                    Building{" "}
+                    <span className="text-accent-word">production-grade</span>
                     <br />
-                    <span className="text-white text-4xl md:text-5xl font-semibold">LLM · RAG · Agentic Systems</span>
+                    AI systems.
                 </motion.h1>
 
-                {/* Subtitle */}
-                <motion.p {...fade(0.4)} className="mt-6 max-w-2xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed">
-                    Building{" "}
-                    <span className="text-primary font-semibold">production-grade AI systems</span>
-                    {" "}—{" "}
-                    <span className="text-accent font-semibold">multi-stage RAG pipelines</span>,{" "}
-                    <span className="text-secondary font-semibold">LangGraph agentic workflows</span>, and
-                    intelligent FastAPI backends that ship to production.
+                {/* Descriptor */}
+                <motion.p {...fade(0.16)} className="text-lg text-[#94A3B8] leading-relaxed mb-10">
+                    LLM pipelines · multi-stage RAG · LangGraph agentic workflows ·
+                    FastAPI backends — end to end.
                 </motion.p>
+
+                {/* CTAs */}
+                <motion.div {...fade(0.22)} className="flex flex-wrap items-center justify-center gap-3 mb-14">
+                    <Link href="/projects" className="btn-primary">
+                        <Icons.Briefcase className="w-4 h-4" />
+                        View Projects
+                    </Link>
+                    <ResumeDownloadButton
+                        label="Resume"
+                        className="btn-ghost"
+                    />
+                    <a
+                        href="https://github.com/sinuarlowbaby"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-ghost"
+                    >
+                        <Icons.Github className="w-4 h-4" />
+                        GitHub
+                    </a>
+                </motion.div>
 
                 {/* Micro stats */}
                 <motion.div
-                    {...fade(0.55)}
-                    className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-400"
+                    {...fade(0.3)}
+                    className="flex flex-wrap justify-center gap-8"
                 >
-                    {[
-                        { v: "5+", l: "AI Projects" },
-                        { v: "GPT-4o", l: "LLM of choice" },
-                        { v: "LangGraph", l: "Agent framework" },
-                        { v: "MCA", l: "AI Specialization" },
-                    ].map(({ v, l }) => (
-                        <div key={l} className="flex flex-col items-center gap-0.5">
-                            <span className="text-white font-bold text-base">{v}</span>
-                            <span className="text-gray-500 text-xs">{l}</span>
+                    {stats.map(({ value, label }) => (
+                        <div key={label}>
+                            <p className="text-white font-semibold text-sm">{value}</p>
+                            <p className="text-[#475569] text-xs mt-0.5">{label}</p>
                         </div>
                     ))}
-                </motion.div>
-
-                {/* CTAs */}
-                <motion.div {...fade(0.7)} className="mt-10 flex flex-col md:flex-row items-center justify-center gap-4">
-                    <a
-                        href="/projects"
-                        className="animate-glow bg-primary text-white px-10 py-3.5 rounded-full font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/50 flex items-center gap-2 group"
-                    >
-                        <Icons.Briefcase className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                        View Projects
-                    </a>
-                    <ResumeDownloadButton
-                        label="Resume"
-                        className="border border-primary/40 text-primary px-10 py-3.5 rounded-full font-semibold hover:bg-primary/10 hover:border-primary/70 transition-all flex items-center gap-2 group"
-                    />
                 </motion.div>
             </div>
 
@@ -134,11 +90,11 @@ export default function HeroSection() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500"
+                transition={{ delay: 1.2 }}
+                className="absolute bottom-8 flex items-center gap-2.5 text-[#475569]"
             >
-                <span className="text-xs tracking-widest uppercase">Scroll</span>
-                <div className="w-px h-8 bg-gradient-to-b from-gray-500 to-transparent animate-pulse" />
+                <div className="w-6 h-px bg-[#1E293B]" />
+                <span className="text-[10px] tracking-widest uppercase">Scroll</span>
             </motion.div>
         </section>
     );
