@@ -107,33 +107,11 @@ export default function ProjectDetailPage() {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen bg-[#030014] pb-24">
-                {/* ── Hero Banner — full bleed with smooth bottom fade ─────── */}
-                <div
-                    className="relative overflow-hidden pt-24"
-                    style={{
-                        background: `linear-gradient(160deg, ${gradientFrom} 0%, ${gradientTo} 50%, #030014 100%)`,
-                    }}
-                >
-                    {/* Ambient glow top-left */}
-                    <div
-                        className="absolute -top-24 -left-24 w-[500px] h-[500px] rounded-full blur-[140px] opacity-25 pointer-events-none"
-                        style={{ background: accentColor }}
-                    />
-                    {/* Secondary glow right */}
-                    <div
-                        className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10 pointer-events-none"
-                        style={{ background: accentColor }}
-                    />
-                    {/* Bottom fade overlay — blends hero into body seamlessly */}
-                    <div
-                        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-                        style={{
-                            background: "linear-gradient(to bottom, transparent 0%, #030014 100%)",
-                        }}
-                    />
+            <main className="min-h-screen page-bg pb-24">
+                {/* ── Hero Banner — clean dark with single accent border top ── */}
+                <div className="relative overflow-hidden pt-24 border-b border-[rgba(255,255,255,0.06)]">
 
-                    <div className="max-w-5xl mx-auto px-6 pb-28 pt-8 relative z-10">
+                    <div className="max-w-5xl mx-auto px-6 md:px-16 pb-16 pt-8 relative z-10">
                         {/* Back link */}
                         <motion.div
                             initial={{ opacity: 0, x: -12 }}
@@ -156,17 +134,7 @@ export default function ProjectDetailPage() {
                             className="flex flex-wrap gap-2 mb-5"
                         >
                             {project.tags.map((tag) => (
-                                <span
-                                    key={tag}
-                                    className="px-3 py-1 rounded-full text-xs font-semibold border"
-                                    style={{
-                                        background: `${accentColor}18`,
-                                        borderColor: `${accentColor}40`,
-                                        color: accentColor,
-                                    }}
-                                >
-                                    {tag}
-                                </span>
+                                <span key={tag} className="tech-badge">{tag}</span>
                             ))}
                         </motion.div>
 
@@ -207,11 +175,11 @@ export default function ProjectDetailPage() {
                             transition={{ delay: 0.25 }}
                             className="flex flex-wrap gap-3"
                         >
-                            <a
+                                <a
                                 href={project.github_url}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white border border-white/20 hover:bg-white/10 transition-all"
+                                className="btn-ghost text-sm"
                             >
                                 <Icons.Github className="w-4 h-4" /> View on GitHub
                             </a>
@@ -220,8 +188,7 @@ export default function ProjectDetailPage() {
                                     href={project.demo_url}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all"
-                                    style={{ background: accentColor }}
+                                    className="btn-primary text-sm"
                                 >
                                     <Icons.Globe className="w-4 h-4" /> Live Demo
                                 </a>
