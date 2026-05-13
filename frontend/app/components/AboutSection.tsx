@@ -20,9 +20,11 @@ const traits = [
 ];
 
 const timeline = [
-    { year: "2025 → Now", label: "MCA — AI Specialization",  org: "SRM Institute of Science & Technology" },
-    { year: "2025",        label: "AICTE GenAI Internship",   org: "Generative AI Developer Track"        },
-    { year: "2022 – 2025", label: "BCA — Computer Applications", org: "CM College of Arts and Science"   },
+    { year: "2025 → Now", label: "MCA — AI Specialization",         org: "SRM Institute of Science & Technology", current: true  },
+    { year: "2025",       label: "GenAI Developer",                  org: "Generative AI Developer Track",         current: false },
+    { year: "2025",       label: "AICTE GenAI Internship",           org: "AICTE — Government of India",           current: false },
+    { year: "2024",       label: "Full Stack Python Developer",       org: "Internship — Python & Django",          current: false },
+    { year: "2022 – 2025",label: "BCA — Computer Applications",      org: "CM College of Arts and Science",        current: false },
 ];
 
 const stats = [
@@ -88,12 +90,19 @@ export default function AboutSection() {
                     <motion.div {...fade(0.15)} className="layer-card p-5">
                         <p className="text-[10px] font-bold uppercase tracking-widest text-[#475569] mb-4">Journey</p>
                         <div className="space-y-4">
-                            {timeline.map(({ year, label, org }, i) => (
+                            {timeline.map(({ year, label, org, current }, i) => (
                                 <div key={i} className="flex gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-[#67E8F9] mt-1.5 flex-shrink-0" />
+                                    <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${current ? "bg-[#67E8F9] ring-2 ring-[#67E8F9]/20" : "bg-[#334155]"}`} />
                                     <div>
-                                        <p className="text-[#67E8F9] text-xs font-semibold mb-0.5">{year}</p>
-                                        <p className="text-white text-sm font-medium">{label}</p>
+                                        <div className="flex items-center gap-2 mb-0.5">
+                                            <p className={`text-xs font-semibold ${current ? "text-[#67E8F9]" : "text-[#475569]"}`}>{year}</p>
+                                            {current && (
+                                                <span className="text-[9px] font-bold uppercase tracking-wider text-[#67E8F9] bg-[rgba(103,232,249,0.08)] border border-[rgba(103,232,249,0.18)] px-1.5 py-0.5 rounded-full leading-none">
+                                                    Now
+                                                </span>
+                                            )}
+                                        </div>
+                                        <p className={`text-sm font-medium ${current ? "text-white" : "text-[#94A3B8]"}`}>{label}</p>
                                         <p className="text-[#475569] text-xs">{org}</p>
                                     </div>
                                 </div>
