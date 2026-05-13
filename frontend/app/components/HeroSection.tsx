@@ -15,9 +15,9 @@ const stats = [
 
 export default function HeroSection() {
     return (
-        <section className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24 overflow-hidden">
+        <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center overflow-hidden">
 
-            {/* Single subtle top gradient — no blobs, no particles */}
+            {/* Single subtle top gradient */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 aria-hidden
@@ -27,7 +27,7 @@ export default function HeroSection() {
                 }}
             />
 
-            <div className="relative z-10 max-w-3xl pt-28 pb-20">
+            <div className="relative z-10 max-w-2xl pt-28 pb-20">
 
                 {/* Eyebrow label */}
                 <motion.p {...fade(0)} className="section-label mb-6">
@@ -46,13 +46,13 @@ export default function HeroSection() {
                 </motion.h1>
 
                 {/* Descriptor */}
-                <motion.p {...fade(0.16)} className="text-lg text-[#94A3B8] leading-relaxed max-w-xl mb-10">
+                <motion.p {...fade(0.16)} className="text-lg text-[#94A3B8] leading-relaxed mb-10">
                     LLM pipelines · multi-stage RAG · LangGraph agentic workflows ·
                     FastAPI backends — end to end.
                 </motion.p>
 
-                {/* CTAs — minimal */}
-                <motion.div {...fade(0.22)} className="flex flex-wrap items-center gap-3 mb-14">
+                {/* CTAs */}
+                <motion.div {...fade(0.22)} className="flex flex-wrap items-center justify-center gap-3 mb-14">
                     <Link href="/projects" className="btn-primary">
                         <Icons.Briefcase className="w-4 h-4" />
                         View Projects
@@ -72,10 +72,10 @@ export default function HeroSection() {
                     </a>
                 </motion.div>
 
-                {/* Micro stats — understated */}
+                {/* Micro stats */}
                 <motion.div
                     {...fade(0.3)}
-                    className="flex flex-wrap gap-8"
+                    className="flex flex-wrap justify-center gap-8"
                 >
                     {stats.map(({ value, label }) => (
                         <div key={label}>
@@ -91,7 +91,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2 }}
-                className="absolute bottom-8 left-6 md:left-16 lg:left-24 flex items-center gap-2.5 text-[#475569]"
+                className="absolute bottom-8 flex items-center gap-2.5 text-[#475569]"
             >
                 <div className="w-6 h-px bg-[#1E293B]" />
                 <span className="text-[10px] tracking-widest uppercase">Scroll</span>

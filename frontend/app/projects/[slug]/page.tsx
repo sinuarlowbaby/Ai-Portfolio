@@ -79,7 +79,7 @@ function NotFound() {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen bg-[#030014] pt-32 flex flex-col items-center justify-center px-6">
+            <main className="min-h-screen page-bg pt-32 flex flex-col items-center justify-center px-6">
                 <p className="text-5xl mb-4">🔍</p>
                 <h1 className="text-2xl font-bold text-white mb-2">Project not found</h1>
                 <p className="text-gray-400 mb-8">That project doesn&apos;t exist yet.</p>
@@ -102,7 +102,7 @@ export default function ProjectDetailPage() {
 
     if (!project) return <NotFound />;
 
-    const { accentColor, gradientFrom, gradientTo } = project;
+    const ACCENT = "#67E8F9";
 
     return (
         <>
@@ -207,9 +207,9 @@ export default function ProjectDetailPage() {
                         transition={{ duration: 0.4 }}
                     >
                         <SectionHeader
-                            icon={<IconCode className="w-4 h-4" style={{ color: accentColor }} />}
+                            icon={<IconCode className="w-4 h-4" style={{ color: ACCENT }} />}
                             title="Overview"
-                            accent={accentColor}
+                            accent={ACCENT}
                         />
                         <div
                             className="rounded-2xl p-6 border border-white/5"
@@ -227,22 +227,22 @@ export default function ProjectDetailPage() {
                         transition={{ duration: 0.4 }}
                     >
                         <SectionHeader
-                            icon={<IconStack className="w-4 h-4" style={{ color: accentColor }} />}
+                            icon={<IconStack className="w-4 h-4" style={{ color: ACCENT }} />}
                             title="Architecture"
-                            accent={accentColor}
+                            accent={ACCENT}
                         />
                         <div
-                            className="rounded-2xl p-5 border font-mono text-sm text-gray-300 leading-relaxed overflow-x-auto"
+                            className="rounded-xl p-5 border font-mono text-sm text-[#94A3B8] leading-relaxed overflow-x-auto"
                             style={{
                                 background: "rgba(0,0,0,0.4)",
-                                borderColor: `${accentColor}30`,
+                                borderColor: "rgba(103,232,249,0.15)",
                             }}
                         >
                             {project.architecture.split(" → ").map((part, i, arr) => (
                                 <span key={i}>
-                                    <span style={{ color: i === 0 ? accentColor : "inherit" }}>{part}</span>
+                                    <span style={{ color: i === 0 ? ACCENT : "inherit" }}>{part}</span>
                                     {i < arr.length - 1 && (
-                                        <span className="text-gray-500 mx-2">→</span>
+                                        <span className="text-[#334155] mx-2">→</span>
                                     )}
                                 </span>
                             ))}
@@ -257,9 +257,9 @@ export default function ProjectDetailPage() {
                         transition={{ duration: 0.4 }}
                     >
                         <SectionHeader
-                            icon={<IconBolt className="w-4 h-4" style={{ color: accentColor }} />}
+                            icon={<IconBolt className="w-4 h-4" style={{ color: ACCENT }} />}
                             title="Key Highlights"
-                            accent={accentColor}
+                            accent={ACCENT}
                         />
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {project.highlights.map((h, i) => (
@@ -274,9 +274,9 @@ export default function ProjectDetailPage() {
                                 >
                                     <div
                                         className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                                        style={{ background: `${accentColor}22` }}
+                                        style={{ background: "rgba(103,232,249,0.12)" }}
                                     >
-                                        <IconCheck className="w-3 h-3" style={{ color: accentColor }} />
+                                        <IconCheck className="w-3 h-3" style={{ color: ACCENT }} />
                                     </div>
                                     <p className="text-gray-300 text-sm leading-relaxed">{h}</p>
                                 </motion.div>
@@ -292,9 +292,9 @@ export default function ProjectDetailPage() {
                         transition={{ duration: 0.4 }}
                     >
                         <SectionHeader
-                            icon={<IconBolt className="w-4 h-4" style={{ color: accentColor }} />}
+                            icon={<IconBolt className="w-4 h-4" style={{ color: ACCENT }} />}
                             title="Core Features"
-                            accent={accentColor}
+                            accent={ACCENT}
                         />
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             {project.features.map((f, i) => (
@@ -310,7 +310,7 @@ export default function ProjectDetailPage() {
                                     <div className="flex items-center gap-3 mb-3">
                                         <div
                                             className="w-2 h-2 rounded-full flex-shrink-0"
-                                            style={{ background: accentColor }}
+                                            style={{ background: ACCENT }}
                                         />
                                         <h3 className="font-semibold text-white text-sm">{f.title}</h3>
                                     </div>
@@ -328,9 +328,9 @@ export default function ProjectDetailPage() {
                         transition={{ duration: 0.4 }}
                     >
                         <SectionHeader
-                            icon={<IconStack className="w-4 h-4" style={{ color: accentColor }} />}
+                            icon={<IconStack className="w-4 h-4" style={{ color: ACCENT }} />}
                             title="Technology Stack"
-                            accent={accentColor}
+                            accent={ACCENT}
                         />
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                             {project.techStack.map((cat, i) => (
@@ -344,8 +344,7 @@ export default function ProjectDetailPage() {
                                     style={{ background: "rgba(255,255,255,0.02)" }}
                                 >
                                     <p
-                                        className="text-xs font-bold uppercase tracking-widest mb-4"
-                                        style={{ color: accentColor }}
+                                        className="text-[10px] font-bold uppercase tracking-widest mb-4 text-[#67E8F9]"
                                     >
                                         {cat.label}
                                     </p>
@@ -374,13 +373,10 @@ export default function ProjectDetailPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
-                        className="rounded-2xl p-8 border border-white/5 text-center"
-                        style={{
-                            background: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`,
-                        }}
+                        className="layer-card p-8 text-center"
                     >
-                        <h2 className="text-2xl font-bold text-white mb-2">Explore the code</h2>
-                        <p className="text-gray-400 mb-6 text-sm">
+                        <h2 className="text-xl font-bold text-white mb-2">Explore the code</h2>
+                        <p className="text-[#94A3B8] mb-6 text-sm">
                             Check out the full implementation on GitHub.
                         </p>
                         <div className="flex flex-wrap justify-center gap-3">
@@ -388,14 +384,13 @@ export default function ProjectDetailPage() {
                                 href={project.github_url}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white border border-white/20 hover:bg-white/10 transition-all"
+                                className="btn-ghost text-sm"
                             >
                                 <Icons.Github className="w-4 h-4" /> View on GitHub
                             </a>
                             <Link
                                 href="/projects"
-                                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all"
-                                style={{ background: accentColor, color: "#fff" }}
+                                className="btn-primary text-sm"
                             >
                                 <IconArrowLeft className="w-4 h-4" /> All Projects
                             </Link>
