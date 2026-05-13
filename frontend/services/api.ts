@@ -1,4 +1,5 @@
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import projectsData from "../data/projects.json";
+import skillsData from "../data/skills.json";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -17,7 +18,7 @@ export interface Project {
 }
 
 export interface SkillsResponse {
-    [layer: string]: string[];  // dynamic keys from skills.json
+    [layer: string]: string[];
 }
 
 export interface ContactPayload {
@@ -26,10 +27,20 @@ export interface ContactPayload {
     message: string;
 }
 
-// ─── API Calls ────────────────────────────────────────────────────────────────
+// ─── Data Access ──────────────────────────────────────────────────────────────
 
-async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-    const res = await fetch(`${BASE}${path}`, {
+export const getProjects = async (): Promise<Project[]> => {
+    return projectsData as Project[];
+};
+
+export const getSkills = async (): Promise<SkillsResponse> => {
+    return skillsData as unknown as SkillsResponse;
+};
+
+// ─── API Routes (Next.js Serverless) ──────────────────────────────────────────
+
+async function internalFetch<T>(path: string, init?: RequestInit): Promise<T> {
+    const res = await fetch(path, {
         headers: { "Content-Type": "application/json" },
         ...init,
     });
@@ -37,18 +48,14 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     return res.json() as Promise<T>;
 }
 
-export const getProjects = () => apiFetch<Project[]>("/projects/");
-
-export const getSkills = () => apiFetch<SkillsResponse>("/skills/");
-
 export const createContact = (data: ContactPayload) =>
-    apiFetch<{ message: string }>("/contact/", {
+    internalFetch<{ message: string }>("/api/contact", {
         method: "POST",
         body: JSON.stringify(data),
     });
 
 export const askAI = (question: string) =>
-    apiFetch<{ answer: string }>("/ai/chat", {
+    internalFetch<{ answer: string }>("/api/ai/chat", {
         method: "POST",
         body: JSON.stringify({ question }),
     });
